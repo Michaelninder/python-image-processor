@@ -3,9 +3,11 @@ print ('Hello World!')
 import os
 from PIL import Image
 import helpers as h
+import shutil
 
 if os.path.exists('tmp'):
-    os.rmdir('tmp')
+    #os.rmdir('tmp')
+    shutil.rmtree('tmp')
     print('tmp-dir removed')
 
 os.mkdir('tmp')
@@ -16,11 +18,11 @@ in1 = h.get_input('Do you want to use a filepath? [Y/n] ', valid_options=["y", "
 
 match in1:
     case "y":
-        filepath = h.get_input('Please enter the filepath (at best, starting with "/" for root): ')
+        filepath = h.trim_quotes(h.get_input('Please enter the filepath (at best, starting with "/" for root): '))
         
         try:
             img = Image.open(filepath)
-            print(f"Image loaded: {img.format} - Size: {img.size}")
+            print(f"Image loaded: {img.format} - Size: {img.size} - Ratio: {h.calc_ratio(img.width, img.height)}")
             
             filename = os.path.basename(filepath)
             tmp_path = os.path.join('tmp', filename)
