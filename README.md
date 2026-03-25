@@ -1,0 +1,1 @@
+`pip install Pillow` or `brew install pillow`
