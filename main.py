@@ -11,12 +11,11 @@ os.mkdir('tmp')
 print('tmp-dir created')
 h.empty_line()
 
-in1 = input("Do you want to use a filepath? [Y/n]")
+in1 = h.get_input('Do you want to use a filepath? [Y/n] ', valid_options=["y", "n"])
 
-match in1.lower():
+match in1:
     case "y":
-        pass
+        in2 = h.get_input('Please enter the filepath (at best, starting with "/" for root) ')
+
     case "n":
-        print ("OK, (To be implemented)")
-    case _:
-        print ("Re-input (to be implemented)")
+        print("OK, (To be implemented)")
